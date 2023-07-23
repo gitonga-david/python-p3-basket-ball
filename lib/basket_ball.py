@@ -139,7 +139,7 @@ def game_dict():
                 },
                 {
                     "name": "Davis Bertans",
-                    "number": 42,
+                     "number": 42,
                     "position": "Power Forward",
                     "points_per_game": 5.6,
                     "rebounds_per_game": 2.1,
@@ -182,3 +182,72 @@ def game_dict():
             ]
         }
     }
+
+# returns the home team
+def home_team():
+    return game_dict()["home"]
+
+# returns the away team
+def away_team():
+    return game_dict()["away"]
+
+# returns the home_team players
+def home_team_players():
+    return home_team()["players"]   
+
+# return the away team players
+def away_team_players():
+    return away_team()["players"]
+
+# return the home team colors
+def home_team_colors():
+    return home_team()["colors"]
+
+# return the away team colors
+def away_team_colors():
+    return away_team()["colors"]
+
+# returns the home and away players combined
+def home_away_team():
+    return home_team_players() + away_team_players()
+
+# returns the points_per_game of a player 
+def num_points_per_game(players_name):
+   for players in home_away_team():
+       if players["name"] == players_name:
+           return players["points_per_game"]
+
+# return the players age
+def player_age(players_name):
+    for players in home_away_team():
+       if players["name"] == players_name:
+           return players["age"]
+       
+# should return the team_colors when passed a teams_name
+def team_colors(team_name):
+    for team in game_dict().values():
+        if team["team_name"] == team_name:
+            return team["colors"]
+
+# returns a list of team names
+def team_names():
+    return [team["team_name"] for team in game_dict().values()]
+
+def player_numbers(team_name):
+    if home_team()["team_name"] == team_name:
+        return [player["number"] for player in home_team()["players"]]
+    else:
+        return [player["number"] for player in away_team()["players"]]
+
+
+def player_stats(players_name):
+    # return [player for player in home_away_team() if player["name"] == players_name]
+    for player in home_away_team():
+        if player["name"] == players_name:
+            return player
+
+def average_rebounds_by_shoe_brand():
+    pass
+
+
+
